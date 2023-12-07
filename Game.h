@@ -20,8 +20,8 @@ public:
     Game(Player& p1, Player& p2, Ball& b);
 
     void update();
-    Player& getPlayer1() { return player1; }
-    Player& getPlayer2() { return player2; }
+    Player* getPlayer1() { return &player1; }
+    Player* getPlayer2() { return &player2; }
 
 };
 
