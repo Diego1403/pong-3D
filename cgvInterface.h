@@ -44,12 +44,12 @@ class cgvInterface {
 		Player player2;
 		Ball  ball;
 
-		Game gameInstance(&player1,&player2,&ball);
+		Game gameInstance = Game(player1,player2,ball);
+	public:
 
 		// Default constructor
 		cgvInterface()=default;
 
-	public:
          // Singleton pattern
         static cgvInterface& getInstance();
 

@@ -75,7 +75,7 @@ void cgvInterface::configure_environment(int argc, char** argv,
  */
 void cgvInterface::init_rendering_loop() {
 	glutMainLoop(); // initialize the visualization loop of OpenGL
-	gameInstance.play();
+	gameInstance.update();
 }
 
 /**
@@ -88,9 +88,36 @@ void cgvInterface::init_rendering_loop() {
  */
 void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
   switch (key) {
+  case 'w':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveUp();
+	  break;
+  case 'a':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveLeft();
 
+	  break;
+  case 's':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveDown();
 
-    case 'a': // enable/disable the visualization of the axes
+	  break;
+  case 'd':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveRight();
+	  break;
+  case 'i':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveUp();
+	  break;
+  case 'j':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveLeft();
+	  break;
+  case 'k':
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveDown();
+	  break;
+
+  case 'l':
+
+	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveRight();
+	  break;
+  
+  case 'a': // enable/disable the visualization of the axes
 			cgvInterface::getInstance().scene.set_axes(cgvInterface::getInstance().scene.get_axes()?false:true);
 
 	  break;
