@@ -31,4 +31,13 @@
 *.out
 *.app
 /.vs/pong-3D
-/x64/Debug
+/x64
+.vs/VSWorkspaceState.json
+.gitignore
+/.vs
+
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+/.vs/
