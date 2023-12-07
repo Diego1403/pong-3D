@@ -9,6 +9,7 @@
 #endif
 
 #include <string>
+#include "Game.h"
 
 #include "cgvScene3D.h"
 #include "cgvCamera.h"
@@ -35,6 +36,15 @@ class cgvInterface {
 
 		// Singleton pattern
 		static cgvInterface *instance; ///< Pointer to the unique instance of the class
+
+
+
+		//initialize the game
+		Player  player1;
+		Player player2;
+		Ball  ball;
+
+		Game gameInstance(&player1,&player2,&ball);
 
 		// Default constructor
 		cgvInterface()=default;

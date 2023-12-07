@@ -52,6 +52,7 @@ void cgvInterface::configure_environment(int argc, char** argv,
 	width_window = _width_window;
 	height_window = _height_window;
 
+
 	// initialization of the display window
 	glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
@@ -74,6 +75,7 @@ void cgvInterface::configure_environment(int argc, char** argv,
  */
 void cgvInterface::init_rendering_loop() {
 	glutMainLoop(); // initialize the visualization loop of OpenGL
+	gameInstance.play();
 }
 
 /**
