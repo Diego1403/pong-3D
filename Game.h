@@ -23,4 +23,5 @@ public:
     Player* getPlayer1();
     Player* getPlayer2();
     Ball* getBall();
+
 };
