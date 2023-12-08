@@ -18,7 +18,6 @@ cgvInterface& cgvInterface::getInstance ()
 {  if ( !instance )
    {  instance = new cgvInterface;
    }
-
    return *instance;
 }
 
@@ -75,7 +74,7 @@ void cgvInterface::configure_environment(int argc, char** argv,
  */
 void cgvInterface::init_rendering_loop() {
 	glutMainLoop(); // initialize the visualization loop of OpenGL
-	gameInstance.update();
+
 }
 
 /**
@@ -89,35 +88,35 @@ void cgvInterface::init_rendering_loop() {
 void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
   switch (key) {
   case 'w':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveUp();
+	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveUp();
 	  break;
   case 'a':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveLeft();
+	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveLeft();
 
 	  break;
   case 's':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveDown();
+	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveDown();
 
 	  break;
   case 'd':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveRight();
+	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveRight();
 	  break;
   case 'i':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveUp();
+	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveUp();
 	  break;
   case 'j':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveLeft();
+	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveLeft();
 	  break;
   case 'k':
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveDown();
+	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveDown();
 	  break;
 
   case 'l':
 
-	  cgvInterface::getInstance().gameInstance.getPlayer1()->moveRight();
+	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveRight();
 	  break;
   
-  case 'a': // enable/disable the visualization of the axes
+  case 'x': // enable/disable the visualization of the axes
 			cgvInterface::getInstance().scene.set_axes(cgvInterface::getInstance().scene.get_axes()?false:true);
 
 	  break;
@@ -134,6 +133,11 @@ void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
  * @param h Height of the window
  * @pre It is assumed that the parameters have valid values
  */
+void cgvInterface::set_glutIdleFunc() {
+	//We move the ball and update logic here 
+	cgvInterface::getInstance().scene.getGame()->update();
+	glutPostRedisplay();
+}
 void cgvInterface::set_glutReshapeFunc(int w, int h) {
   // dimension of the viewport with a new width and a new height of the display window 
 
@@ -163,6 +167,10 @@ void cgvInterface::set_glutDisplayFunc() {
 	}
 	// Apply the camera and projection transformations according to its parameters and to the mode (selection or visualization)
 	cgvInterface::getInstance().camera.apply();
+
+	//pass game data to scene
+	cgvInterface::getInstance().scene.setGameData(cgvInterface::getInstance().gameInstance);
+
 
 	// Render the scene
 	cgvInterface::getInstance().scene.render(cgvInterface::getInstance().mode);
@@ -207,7 +215,7 @@ void cgvInterface::init_callbacks() {
 	glutKeyboardFunc(set_glutKeyboardFunc);
 	glutReshapeFunc(set_glutReshapeFunc);
 	glutDisplayFunc(set_glutDisplayFunc);
-
+	glutIdleFunc(set_glutIdleFunc);
 	glutMouseFunc(set_glutMouseFunc); 
 	glutMotionFunc(set_glutMotionFunc); 	
 }

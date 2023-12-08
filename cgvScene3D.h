@@ -11,7 +11,7 @@
 
 #include <vector>
 #include "cgvBox.h"
-
+#include "Game.h"
 using namespace std; 
 
 /**
@@ -24,11 +24,16 @@ class cgvScene3D {
 
 		// Additional attributes		
 		bool axes=true; ///< It indicates whether the axes are rendered or not
-                
+		Game *gameInstance = NULL;
 
 	public:
+		//link gamedata 
+		void setGameData(Game *_gameInstance) { gameInstance = _gameInstance; };
 		// Default constructor and destructor
 		cgvScene3D();
+		void drawplayer1();
+		void drawplayer2();
+		void drawball();
 		~cgvScene3D() = default;
 
 		// Methods
@@ -39,7 +44,7 @@ class cgvScene3D {
 			
 		bool get_axes() {return axes;};
 		void set_axes(bool _axes){axes = _axes;};
-
+		Game *getGame() { if (gameInstance) { return gameInstance; } }
 		
 	private:
 		void draw_axes();

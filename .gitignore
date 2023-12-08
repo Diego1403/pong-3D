@@ -41,3 +41,7 @@
 *.vcxproj.filters
 *.vcxproj.user
 /.vs/
+pong-3D.vcxproj
+pong-3D.vcxproj
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json

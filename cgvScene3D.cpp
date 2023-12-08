@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "cgvScene3D.h"
+#include <iostream>
 
 
 // Constructor methods -----------------------------------
@@ -26,8 +27,60 @@ cgvScene3D::cgvScene3D () {
 
 // Public methods ----------------------------------------
 
+void cgvScene3D::drawplayer1() {
+	float x = gameInstance->getPlayer1()->getX();
+	float y = gameInstance->getPlayer1()->getY();
+	float z = gameInstance->getPlayer1()->getZ();
+	float height = gameInstance->getPlayer1()->getHeight();
+	float width = gameInstance->getPlayer1()->getWidth();
+	glPushMatrix();
+	glTranslatef(x, y, z);
+
+	// Draw player one as a box
+	glPushMatrix();
+	glScalef(width, height, 0.1f);  // Use width and height for scaling
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPopMatrix();
 
 
+
+}
+
+void cgvScene3D::drawplayer2() {
+	float x = gameInstance->getPlayer2()->getX();
+	float y = gameInstance->getPlayer2()->getY();
+	float z = gameInstance->getPlayer2()->getZ();
+	float height = gameInstance->getPlayer2()->getHeight();
+	float width = gameInstance->getPlayer2()->getWidth();
+	glPushMatrix();
+	glTranslatef(x, y, z);
+
+	// Draw player one as a box
+	glPushMatrix();
+	glScalef(width, height, 0.1f);  // Use width and height for scaling
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPopMatrix();
+
+}
+void cgvScene3D::drawball() {
+	float radius = gameInstance->getBall()->getRadius();
+	float x = gameInstance->getBall()->getPosX();
+	float y = gameInstance->getBall()->getPosX();
+	float z = gameInstance->getBall()->getPosZ();
+
+	glPushMatrix();
+	glTranslatef(x, y, z);
+
+	glutSolidSphere(radius, 32, 32);
+
+	glPopMatrix();
+
+
+}
 
 /**
  * This method is called to render the scene
@@ -48,24 +101,9 @@ void cgvScene3D::render(RenderMode mode) {
 	  // draw the axes
 	if ((axes)&&(mode == CGV_DISPLAY)) draw_axes();
 
-	// 
-
-    // Iterate over all boxes in the scene
-    for (int i = 0; i < boxes.size(); ++i) {
-        glPushMatrix(); // Save the current transformation state
-        glTranslatef(0, i, 0); // Apply translation to each box for demonstration
-
-        if (mode == CGV_SELECT) {
-            // In selection mode, use the unique color id for each box
-            glColor3ubv(boxes[i].getColorAsID());
-            boxes[i].render(CGV_SELECT); // Render the box with its id color
-        } else {
-            // In normal rendering mode, render the box as usual
-            boxes[i].render(CGV_DISPLAY);
-        }
-
-        glPopMatrix(); // Restore the transformation state
-    }
+	drawplayer1();
+	drawplayer2();
+	drawball();
 
 
 	glPopMatrix (); // restore the modelview matrix 

@@ -1,13 +1,12 @@
 #pragma once
 
-class Player
-{
+class Player {
 private:
     int pos_x;
     int pos_y;
-    const int pos_z;
-    const int width;
-    const int height;
+    int pos_z;
+    int width;
+    int height;
 
 public:
     // Constructor
@@ -15,14 +14,8 @@ public:
 
     // Destructor
     ~Player();
-    Player(const Player& other);
 
-
-    Player(Player&& other) noexcept;
-    Player& operator=(const Player& other);
-    Player& operator=(Player&& other) noexcept;
-    bool operator==(const Player& other) const;
-    bool operator!=(const Player& other) const;
+    // Other member functions and operators
 
     // Getter methods
     int getX() const;
