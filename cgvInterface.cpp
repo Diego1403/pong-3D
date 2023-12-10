@@ -87,32 +87,32 @@ void cgvInterface::init_rendering_loop() {
 void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
   switch (key) {
   case 'w':
-	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveUp();
+	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_up);
 	  break;
   case 'a':
-	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveLeft();
+	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_left);
 
 	  break;
   case 's':
-	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveDown();
-
+	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_down);
 	  break;
   case 'd':
-	  cgvInterface::getInstance().gameInstance->getPlayer1()->moveRight();
+	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_right);
 	  break;
   case 'i':
-	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveUp();
+	  cgvInterface::getInstance().gameInstance->movePlayer(2, direction::dir_up);
 	  break;
   case 'j':
-	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveLeft();
+	  cgvInterface::getInstance().gameInstance->movePlayer(2, direction::dir_left);
 	  break;
   case 'k':
-	  cgvInterface::getInstance().gameInstance->getPlayer2()->moveDown();
+	  cgvInterface::getInstance().gameInstance->movePlayer(2, direction::dir_down);
 
 	  break;
 
   case 'l':
-
+	  cgvInterface::getInstance().gameInstance->movePlayer(2, direction::dir_right);
+	  break;
   
   case 'x': // enable/disable the visualization of the axes
 
@@ -135,6 +135,7 @@ void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
 void cgvInterface::set_glutIdleFunc() {
 	//We move the ball and update logic here 
 	cgvInterface::getInstance().scene.getGame()->update();
+
 	glutPostRedisplay();
 }
 void cgvInterface::set_glutReshapeFunc(int w, int h) {

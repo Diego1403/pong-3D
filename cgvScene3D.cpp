@@ -11,8 +11,6 @@
  * Constructor method. Initially, it defines the vector of boxes with three of them. 
  */
 cgvScene3D::cgvScene3D () {
-	// TODO: Modify the constructor to assign adequate color to the boxes to be able to use the color buffer technique. 
-
 	axes = true;
 
 
@@ -33,7 +31,12 @@ void cgvScene3D::drawplayer1() {
 	float z = gameInstance->getPlayer1()->getZ();
 	float height = gameInstance->getPlayer1()->getHeight();
 	float width = gameInstance->getPlayer1()->getWidth();
+
+	// Set material properties for red color
+	GLfloat redMaterial[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+
 	glPushMatrix();
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, redMaterial);
 	glTranslatef(x, y, z);
 
 	// Draw player one as a box

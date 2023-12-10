@@ -2,15 +2,16 @@
 
 class Player {
 private:
-    int pos_x;
-    int pos_y;
-    int pos_z;
-    int width;
-    int height;
+    float pos_x;
+    float pos_y;
+    float pos_z;
+    float width;
+    float height;
 
 public:
     // Constructor
-    Player(int x, int y, int z, int w, int h);
+    Player() = default;
+    Player(float x, float y, float z, float w, float h);
 
     // Destructor
     ~Player();
@@ -18,11 +19,11 @@ public:
     // Other member functions and operators
 
     // Getter methods
-    int getX() const;
-    int getY() const;
-    int getZ() const;
-    int getWidth() const;
-    int getHeight() const;
+    float getX() const;
+    float getY() const;
+    float getZ() const;
+    float getWidth() const;
+    float getHeight() const;
 
     // Movement methods
     void moveUp();
