@@ -44,7 +44,7 @@ class cgvScene3D {
 			
 		bool get_axes() {return axes;};
 		void set_axes(bool _axes){axes = _axes;};
-		Game *getGame() { if (gameInstance) { return gameInstance; } }
+		Game* getGame() { if (gameInstance) { return gameInstance; }return NULL; }
 		
 	private:
 		void draw_axes();

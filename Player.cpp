@@ -1,35 +1,37 @@
 #include "Player.h"
 
-Player::Player(int x, int y, int z, int w, int h)
+
+
+Player::Player(float x, float y, float z, float w, float h)
     : pos_x(x), pos_y(y), pos_z(z), width(w), height(h) {
 }
 
-int Player::getX() const {
+float Player::getX() const {
     return pos_x;
 }
 
-int Player::getY() const {
+float Player::getY() const {
     return pos_y;
 }
 
-int Player::getZ() const {
+float Player::getZ() const {
     return pos_z;
 }
 
-int Player::getWidth() const {
+float Player::getWidth() const {
     return width;
 }
 
-int Player::getHeight() const {
+float Player::getHeight() const {
     return height;
 }
 
 void Player::moveUp() {
-    pos_y -= 1;
+    pos_y += 1;
 }
 
 void Player::moveDown() {
-    pos_y += 1;
+    pos_y -= 1;
 }
 
 void Player::moveRight() {
