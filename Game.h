@@ -12,7 +12,7 @@ private:
     float paddle_height = 3.0;
     float paddle_width = 2.0;
     float ball_radius = 1.0;
-    float wall_width = 2.0;
+    float wall_width = 6.0;
     float wall_height = 6.0;
     float wall_depth = 6.0;
     float paddle_depth = 0.1;

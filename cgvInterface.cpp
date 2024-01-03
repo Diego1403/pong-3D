@@ -89,14 +89,14 @@ void cgvInterface::set_glutKeyboardFunc(unsigned char key, int x, int y) {
   case 'w':
 	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_up);
 	  break;
-  case 'a':
+  case 'd':
 	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_left);
 
 	  break;
   case 's':
 	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_down);
 	  break;
-  case 'd':
+  case 'a':
 	  cgvInterface::getInstance().gameInstance->movePlayer(1, direction::dir_right);
 	  break;
   case 'i':
@@ -151,6 +151,7 @@ void cgvInterface::set_glutReshapeFunc(int w, int h) {
   // Set up the kind of projection to be used
 	// Set up the kind of projection to be used
   cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5,5,40), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
+  cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5, 5, -40), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
   cgvInterface::getInstance().camera.apply();
 
 }

@@ -27,19 +27,19 @@ float Player::getHeight() const {
 }
 
 void Player::moveUp() {
-    pos_y += 1;
+    pos_y += 0.5;
 }
 
 void Player::moveDown() {
-    pos_y -= 1;
+    pos_y -= 0.5;
 }
 
 void Player::moveRight() {
-    pos_x += 1;
+    pos_x += 0.5;
 }
 
 void Player::moveLeft() {
-    pos_x -= 1;
+    pos_x -= 0.5;
 }
 Player::~Player() {
 }
