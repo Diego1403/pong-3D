@@ -33,6 +33,7 @@ public:
     Ball* getBall();
     float getPaddleHeight();
     float getPaddleWidth();
+    float getPaddleDepth();
     float getBallRadius();
     float getWallWidth();
     float getWallHeight();

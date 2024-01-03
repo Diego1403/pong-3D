@@ -23,18 +23,18 @@ public:
 		pos_y = 0.1;
 		pos_z = 0.1;
 		radius = 1.0;
-        vel_x = 0.000;
-        vel_y = 0.000;
-        vel_z = 0.001;
+        vel_x = 0.001;
+        vel_y = 0.0001;
+        vel_z = 0.0001;
 	};
     Ball(float r ) {
         pos_x = 0.1;
         pos_y = 0.1;
         pos_z = 0.1;
         radius = r;
-        vel_x = 0.000;
-        vel_y = 0.000;
-        vel_z = 0.001;
+        vel_x = 0.001;
+        vel_y = 0.0001;
+        vel_z = 0.0001;
     };
 
     void change_direction(moving mov);
@@ -47,9 +47,9 @@ public:
         pos_y = 0.1;
         pos_z = 0.1;
 
-        vel_x = 0.000;
-        vel_y = 0.000;
-        vel_z = 0.001;
+        vel_x = 0.001;
+        vel_y = 0.0001;
+        vel_z = 0.0001;
     }
 
     void move()
