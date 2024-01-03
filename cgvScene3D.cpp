@@ -31,6 +31,7 @@ void cgvScene3D::drawplayer1() {
 	float z = gameInstance->getPlayer1()->getZ();
 	float height = gameInstance->getPlayer1()->getHeight();
 	float width = gameInstance->getPlayer1()->getWidth();
+	float depth = gameInstance->getPaddleDepth();
 
 	// Set material properties for red color
 	GLfloat redMaterial[] = { 1.0f, 0.0f, 0.0f, 1.0f };
@@ -41,7 +42,7 @@ void cgvScene3D::drawplayer1() {
 
 	// Draw player one as a box
 	glPushMatrix();
-	glScalef(width, height, 0.1f);  // Use width and height for scaling
+	glScalef(width, height, depth);  // Use width and height for scaling
 	glutSolidCube(1);
 	glPopMatrix();
 
@@ -57,12 +58,13 @@ void cgvScene3D::drawplayer2() {
 	float z = gameInstance->getPlayer2()->getZ();
 	float height = gameInstance->getPlayer2()->getHeight();
 	float width = gameInstance->getPlayer2()->getWidth();
+	float depth = gameInstance->getPaddleDepth();
 	glPushMatrix();
 	glTranslatef(x, y, z);
 
 	// Draw player one as a box
 	glPushMatrix();
-	glScalef(width, height, 0.1f);  // Use width and height for scaling
+	glScalef(width, height, depth);  // Use width and height for scaling
 	glutSolidCube(1);
 	glPopMatrix();
 
@@ -135,16 +137,16 @@ void cgvScene3D::draw_axes(void) {
 
 	glBegin(GL_LINES);
     glMaterialfv(GL_FRONT,GL_EMISSION,red);
-		glVertex3f(1000,0,0);
-		glVertex3f(-1000,0,0);
+		glVertex3f(gameInstance->getWallWidth(), 0, 0);
+		glVertex3f(- gameInstance->getWallWidth(),0,0);
 
     glMaterialfv(GL_FRONT,GL_EMISSION,green);
-		glVertex3f(0,1000,0);
-		glVertex3f(0,-1000,0);
+		glVertex3f(0,gameInstance->getWallHeight(), 0);
+		glVertex3f(0,-gameInstance->getWallHeight(),0);
 
     glMaterialfv(GL_FRONT,GL_EMISSION,blue);
-		glVertex3f(0,0,1000);
-		glVertex3f(0,0,-1000);
+		glVertex3f(0,0, gameInstance->getWallDepth());
+		glVertex3f(0,0,-gameInstance->getPaddleDepth()	);
 
 	glEnd();
 }

@@ -29,7 +29,7 @@ void Game::update() {
     if (ball.getPosY()  < -wall_height/2  ) {
         ball.change_direction(moving::up);
     }
-    if (ball.getPosY() > wall_height / 2) {
+    if (ball.getPosY() > wall_height/2) {
         ball.change_direction(moving::down);
     }
 
@@ -118,6 +118,11 @@ float Game::getPaddleHeight() {
 
 float Game::getPaddleWidth() {
     return paddle_width;
+}
+
+float Game::getPaddleDepth()
+{
+    return paddle_depth;
 }
 
 float Game::getBallRadius() {
