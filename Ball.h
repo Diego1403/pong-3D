@@ -9,9 +9,9 @@ private:
     float pos_y;
     float pos_z;
     float radius;
-    float vel_x;
-    float vel_y;
-    float vel_z;
+    float vel_x=0.001;
+    float vel_y=0.001;
+    float vel_z=0.001;
     moving mov_z = moving::forward;
     moving mov_x = moving::left;
     moving mov_y = moving::up;
@@ -23,18 +23,14 @@ public:
 		pos_y = 0.1;
 		pos_z = 0.1;
 		radius = 1.0;
-        vel_x = 0.001;
-        vel_y = 0.0001;
-        vel_z = 0.0001;
+
 	};
     Ball(float r ) {
         pos_x = 0.1;
         pos_y = 0.1;
         pos_z = 0.1;
         radius = r;
-        vel_x = 0.001;
-        vel_y = 0.0001;
-        vel_z = 0.0001;
+
     };
 
     void change_direction(moving mov);
@@ -46,10 +42,13 @@ public:
         pos_x = 0.1;
         pos_y = 0.1;
         pos_z = 0.1;
-
         vel_x = 0.001;
-        vel_y = 0.0001;
-        vel_z = 0.0001;
+        vel_y = 0.001;
+        vel_z = 0.001;
+        moving mov_x = moving::left;
+        moving mov_y = moving::up;
+        moving mov_z = moving::forward;
+
     }
 
     void move()
@@ -74,6 +73,5 @@ public:
         }
         
     }
-    void change_speed(float change_vel_x, float change_vel_y, float change_vel_z);
 
 };

@@ -74,7 +74,7 @@ void cgvScene3D::drawplayer2() {
 void cgvScene3D::drawball() {
 	float radius = gameInstance->getBall()->getRadius();
 	float x = gameInstance->getBall()->getPosX();
-	float y = gameInstance->getBall()->getPosX();
+	float y = gameInstance->getBall()->getPosY();
 	float z = gameInstance->getBall()->getPosZ();
 
 	glPushMatrix();

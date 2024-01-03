@@ -1,11 +1,10 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game() {
-    player1 = Player(0, 0, 6, paddle_height, paddle_width);
-    player2 = Player(0, 0, -6, paddle_height, paddle_width);
+    player1 = Player(0, 0, 3, paddle_width, paddle_height);
+    player2 = Player(0, 0, -3, paddle_width, paddle_height);
     ball = Ball(ball_radius);
-    wall_width = player1.getWidth() * 2;
-    wall_height = player1.getWidth() * 2;
     wall_depth = player1.getZ() - player2.getZ();
     // Initialize other members if needed
 }
@@ -29,37 +28,43 @@ void Game::update() {
     if (ball.getPosY()  < -wall_height/2  ) {
         ball.change_direction(moving::up);
     }
-    if (ball.getPosY() > wall_height/2) {
+    if (ball.getPosY() > wall_height / 2) {
         ball.change_direction(moving::down);
     }
 
-
-    if (ball.getPosX() - ball_radius / 2 < player1.getX() + player1.getWidth() / 2 &&
-        ball.getPosX() + ball_radius / 2 > player1.getX() - player1.getWidth() / 2 &&
-        ball.getPosY() - ball_radius / 2 < player1.getY() + player1.getHeight() / 2 &&
-        ball.getPosY() + ball_radius / 2 > player1.getY() - player1.getHeight() / 2 &&
-        ball.getPosZ() < player1.getZ() + paddle_depth - ball_radius / 2 &&
-        ball.getPosZ() > player1.getZ() - paddle_depth - ball_radius / 2)
+    std::cout << "b:" << ball.getPosX() << "," << ball.getPosY() <<","<< ball.getPosZ()  << std::endl;
+    std::cout << "p:" << player1.getX()<<","<< player1.getY() <<"," << player1.getZ()<< std::endl;
+    // Ball hit player 1's paddle
+    if (ball.getPosX() - ball.getRadius() <= player1.getX() + player1.getWidth() / 2 &&
+        ball.getPosX() + ball.getRadius() >= player1.getX() - player1.getWidth() / 2 &&
+        ball.getPosY() - ball.getRadius() <= player1.getY() + player1.getHeight() / 2 &&
+        ball.getPosY() + ball.getRadius() >= player1.getY() - player1.getHeight() / 2 &&
+        ball.getPosZ() - ball.getRadius() <= player1.getZ() + paddle_depth &&
+        ball.getPosZ() + ball.getRadius() >= player1.getZ() - paddle_depth)
     {
-        // Ball hit player 1's paddle, invert velocity in x direction
+        // Ball hit player 1's paddle, invert velocity in z direction
         ball.change_direction(moving::forward);
     }
-    if (ball.getPosX() - ball_radius / 2 < player2.getX() + player2.getWidth() / 2 &&
-        ball.getPosX() + ball_radius / 2 > player2.getX() - player2.getWidth() / 2 &&
-        ball.getPosY() - ball_radius / 2 < player2.getY() + player2.getHeight() / 2 &&
-        ball.getPosY() + ball_radius / 2 > player2.getY() - player2.getHeight() / 2 &&
-        ball.getPosZ() < player2.getZ() + paddle_depth + ball_radius / 2 &&
-        ball.getPosZ() > player2.getZ() - paddle_depth + ball_radius / 2)
+
+    // Ball hit player 2's paddle
+    if (ball.getPosX() - ball.getRadius() <= player2.getX() + player2.getWidth() / 2 &&
+        ball.getPosX() + ball.getRadius() >= player2.getX() - player2.getWidth() / 2 &&
+        ball.getPosY() - ball.getRadius() <= player2.getY() + player2.getHeight() / 2 &&
+        ball.getPosY() + ball.getRadius() >= player2.getY() - player2.getHeight() / 2 &&
+        ball.getPosZ() - ball.getRadius() <= player2.getZ() + paddle_depth &&
+        ball.getPosZ() + ball.getRadius() >= player2.getZ() - paddle_depth)
     {
-        // Ball hit player 2's paddle, invert velocity in x direction
+        // Ball hit player 2's paddle, invert velocity in z direction
         ball.change_direction(moving::backwards);
     }
 
 
-    if (ball.getPosZ() < -wall_depth  - ball_radius/2) {
+
+    if (ball.getPosZ() < -wall_depth  - ball_radius) {
         ball.reset();
+
     }
-    if (ball.getPosZ() > wall_depth + ball_radius/2) {
+    if (ball.getPosZ() > wall_depth + ball_radius) {
         ball.reset();
     }
     ball.move();
