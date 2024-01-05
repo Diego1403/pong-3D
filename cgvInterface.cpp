@@ -144,16 +144,12 @@ void cgvInterface::set_glutReshapeFunc(int w, int h) {
 
   // store the new values of the viewport and the display window. 
   cgvInterface::getInstance().set_width_window(w);
-  cgvInterface::getInstance().set_height_window(h);
-	
-
+  cgvInterface::getInstance().set_height_window(h);	
 
   // Set up the kind of projection to be used
-	// Set up the kind of projection to be used
-  cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5,5,40), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
-  cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5, 5, -40), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
+ // Set up the kind of projection to be used
+  cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5,10,20), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
   cgvInterface::getInstance().camera.apply();
-
 }
 
 /**
