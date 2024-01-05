@@ -27,6 +27,10 @@ cgvInterface& cgvInterface::getInstance ()
 void cgvInterface::create_world(void) {
 	camera = cgvCamera(cgvPoint3D(6.0, 4.0, 8), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1.0, 0)); 
 	camera.setParallelParameters(1*5, 1*5, 0.1, 200);
+	camera2 = cgvCamera(cgvPoint3D(6.0, 4.0, 8), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1.0, 0));
+	camera2.setParallelParameters(1 * 5, 1 * 5, 0.1, 200);
+
+
 
 }
 
@@ -150,6 +154,8 @@ void cgvInterface::set_glutReshapeFunc(int w, int h) {
  // Set up the kind of projection to be used
   cgvInterface::getInstance().camera.setCameraParameters(cgvPoint3D(5,10,20), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
   cgvInterface::getInstance().camera.apply();
+  cgvInterface::getInstance().camera2.setCameraParameters(cgvPoint3D(5, 10, -20), cgvPoint3D(0, 0, 0), cgvPoint3D(0, 1, 0));
+  cgvInterface::getInstance().camera2.apply();
 }
 
 /**
@@ -160,7 +166,7 @@ void cgvInterface::set_glutDisplayFunc() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the window and the z-buffer
 
 	// set up the viewport
-	glViewport(0, 0, cgvInterface::getInstance().get_width_window(), cgvInterface::getInstance().get_height_window());
+	glViewport(0, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window()/2);
 
 	// Section A: check the mode before applying the camera and projection transformations,
 	if (cgvInterface::getInstance().mode == CGV_SELECT) {
@@ -168,12 +174,13 @@ void cgvInterface::set_glutDisplayFunc() {
 	}
 	// Apply the camera and projection transformations according to its parameters and to the mode (selection or visualization)
 	cgvInterface::getInstance().camera.apply();
-
 	//pass game data to scene
 	cgvInterface::getInstance().scene.setGameData(cgvInterface::getInstance().gameInstance);
-
-
 	// Render the scene
+	cgvInterface::getInstance().scene.render(cgvInterface::getInstance().mode);
+		// set up the viewport
+	glViewport(cgvInterface::getInstance().get_width_window() / 2, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window()/2);
+	cgvInterface::getInstance().camera2.apply();
 	cgvInterface::getInstance().scene.render(cgvInterface::getInstance().mode);
 
 	if (cgvInterface::getInstance().mode == CGV_SELECT) {
@@ -184,6 +191,9 @@ void cgvInterface::set_glutDisplayFunc() {
 		// refresh the window
 		glutSwapBuffers(); // it is used instead of glFlush(), to avoid flickering
 	}	
+	
+
+
 
 }
 

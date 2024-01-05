@@ -27,7 +27,7 @@ protected:
 
 	cgvScene3D scene; ///< scene to be rendered in the display window defined by cgvInterface. 
 	cgvCamera camera; ///< Camera to visualize the scene
-
+	cgvCamera camera2; ///< Camera to visualize the scene
 	cameraType camType = CGV_PARALLEL; ///< Camera type 	CGV_PARALLEL or CGV_PERSPECTIVE
 
 	RenderMode mode = CGV_DISPLAY; ///< CGV_DISPLAY: in the window where the scene is usually rendered  
