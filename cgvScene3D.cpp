@@ -87,6 +87,110 @@ void cgvScene3D::drawball() {
 
 }
 
+void cgvScene3D::drawField()
+{
+	float depth = gameInstance->getWallDepth() / 2;
+	float height = gameInstance->getWallHeight() / 2;
+	float width = gameInstance->getWallWidth() / 2;
+
+
+	glColor3f(0.0f, 1.0f, 0.0f); // Set color to black
+	// Draw the floor
+	glBegin(GL_QUADS);
+	glVertex3f(-width, -height, -depth);
+	glVertex3f(width, -height, -depth);
+	glVertex3f(width, -height, depth);
+	glVertex3f(-width, -height, depth);
+	glEnd();
+	// Draw the walls
+	// Wall 1
+	glColor3f(0.0f, 0.5f, 0.5f);
+	glBegin(GL_QUADS);
+	glVertex3f(-width, -height, -depth);
+	glVertex3f(width, -height, -depth);
+	glVertex3f(width, height, -depth);
+	glVertex3f(-width, height, -depth);
+	glEnd();
+	/*
+	// Wall 2
+	glBegin(GL_QUADS);
+	glVertex3f(width, -height, -depth);
+	glVertex3f(width, -height, depth);
+	glVertex3f(width, height, depth);
+	glVertex3f(width, height, -depth);
+	glEnd();
+	*/
+
+	// Wall 3
+	/*
+	glBegin(GL_QUADS);
+	glVertex3f(width, -height, depth);
+	glVertex3f(-width, -height, depth);
+	glVertex3f(-width, height, depth);
+	glVertex3f(width, height, depth);
+	glEnd();
+	*/
+	// Wall 4
+	glColor3f(0.0f, 0.5f, 1.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(-width, -height, depth);
+	glVertex3f(-width, -height, -depth);
+	glVertex3f(-width, height, -depth);
+	glVertex3f(-width, height, depth);
+	glEnd();
+	
+	glPushMatrix();
+
+	glColor3f(0.0f, 0.0f, 0.0f); // Set color to black
+
+	// Draw the 12 lines
+	glBegin(GL_LINES);
+	// Bottom face
+	glVertex3f(-width, -height, -depth);
+	glVertex3f(width, -height, -depth);
+
+	glVertex3f(width, -height, -depth);
+	glVertex3f(width, -height, depth);
+
+	glVertex3f(width, -height, depth);
+	glVertex3f(-width, -height, depth);
+
+	glVertex3f(-width, -height, depth);
+	glVertex3f(-width, -height, -depth);
+
+	// Top face
+	glVertex3f(-width, height, -depth);
+	glVertex3f(width, height, -depth);
+
+	glVertex3f(width, height, -depth);
+	glVertex3f(width, height, depth);
+
+	glVertex3f(width, height, depth);
+	glVertex3f(-width, height, depth);
+
+	glVertex3f(-width, height, depth);
+	glVertex3f(-width, height, -depth);
+
+	// Vertical lines
+	glVertex3f(-width, -height, -depth);
+	glVertex3f(-width, height, -depth);
+
+	glVertex3f(width, -height, -depth);
+	glVertex3f(width, height, -depth);
+
+	glVertex3f(width, -height, depth);
+	glVertex3f(width, height, depth);
+
+	glVertex3f(-width, -height, depth);
+	glVertex3f(-width, height, depth);
+
+
+
+	glEnd();
+	glPopMatrix();
+}
+
+
 /**
  * This method is called to render the scene
  * @param mode Identifier of the scene to be rendered
@@ -96,24 +200,29 @@ void cgvScene3D::drawball() {
 void cgvScene3D::render(RenderMode mode) {
 
 	// lights
-	GLfloat light0[4]={5.0,5.0,5.0,1}; // point light source  
-	glLightfv(GL_LIGHT0,GL_POSITION,light0); // this light is placed here and it remains still 
-        glEnable(GL_LIGHT0);
-  
+
+	GLfloat light0[4] = { 5.0,5.0,5.0,1 }; // point light source  
+	glLightfv(GL_LIGHT0, GL_POSITION, light0); // this light is placed here and it remains still 
+
+	glEnable(GL_LIGHT0);
+
 	// create the model
 	glPushMatrix(); // store the model matrices
 
-	  // draw the axes
-	if ((axes)&&(mode == CGV_DISPLAY)) draw_axes();
+	// draw the axes
 
 	drawplayer1();
 	drawplayer2();
 	drawball();
 
+	// Disable lighting before drawing the field
+	drawField();
+	// Enable lighting again after drawing the field
 
-	glPopMatrix (); // restore the modelview matrix 
-  
+
+	glPopMatrix(); // restore the modelview matrix 
 }
+
 
 /**
  * Select a box from the vector of boxes if needed

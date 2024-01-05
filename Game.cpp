@@ -25,10 +25,10 @@ void Game::update() {
         ball.change_direction(moving::left);
     }
 
-    if (ball.getPosY()  < -wall_height/2  ) {
+    if (ball.getPosY()  < -wall_height/2 +ball.getRadius()) {
         ball.change_direction(moving::up);
     }
-    if (ball.getPosY() > wall_height / 2) {
+    if (ball.getPosY() > wall_height / 2 -ball.getRadius()) {
         ball.change_direction(moving::down);
     }
 
@@ -43,7 +43,7 @@ void Game::update() {
         ball.getPosZ() + ball.getRadius() >= player1.getZ() - paddle_depth)
     {
         // Ball hit player 1's paddle, invert velocity in z direction
-        ball.change_direction(moving::forward);
+        ball.change_direction(moving::backwards);
     }
 
     // Ball hit player 2's paddle
@@ -55,16 +55,16 @@ void Game::update() {
         ball.getPosZ() + ball.getRadius() >= player2.getZ() - paddle_depth)
     {
         // Ball hit player 2's paddle, invert velocity in z direction
-        ball.change_direction(moving::backwards);
+        ball.change_direction(moving::forward);
     }
 
 
 
-    if (ball.getPosZ() < -wall_depth  - ball_radius) {
+    if (ball.getPosZ() < -wall_depth  + ball_radius) {
         ball.reset();
 
     }
-    if (ball.getPosZ() > wall_depth + ball_radius) {
+    if (ball.getPosZ() > wall_depth - ball_radius) {
         ball.reset();
     }
     ball.move();

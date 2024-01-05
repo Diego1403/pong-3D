@@ -34,6 +34,7 @@ class cgvScene3D {
 		void drawplayer1();
 		void drawplayer2();
 		void drawball();
+		void drawField();
 		~cgvScene3D() = default;
 
 		// Methods
