@@ -166,7 +166,7 @@ void cgvInterface::set_glutDisplayFunc() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the window and the z-buffer
 
 	// set up the viewport
-	glViewport(0, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window()/2);
+	glViewport(0, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window());
 
 	// Section A: check the mode before applying the camera and projection transformations,
 	if (cgvInterface::getInstance().mode == CGV_SELECT) {
@@ -179,7 +179,7 @@ void cgvInterface::set_glutDisplayFunc() {
 	// Render the scene
 	cgvInterface::getInstance().scene.render(cgvInterface::getInstance().mode);
 		// set up the viewport
-	glViewport(cgvInterface::getInstance().get_width_window() / 2, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window()/2);
+	glViewport(cgvInterface::getInstance().get_width_window() / 2, 0, cgvInterface::getInstance().get_width_window()/2, cgvInterface::getInstance().get_height_window());
 	cgvInterface::getInstance().camera2.apply();
 	cgvInterface::getInstance().scene.render(cgvInterface::getInstance().mode);
 

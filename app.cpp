@@ -6,7 +6,7 @@
 int main (int argc, char** argv) {
 	// initialize the display window
 	cgvInterface::getInstance().configure_environment(argc,argv,
-	                           500,500, // window size
+	                           1000,500, // window size
 														 100,100, // window position
 														 "Computer Graphics and Visualization. Practice 3c." // title of the window
 														 );
