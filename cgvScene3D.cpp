@@ -104,6 +104,7 @@ void cgvScene3D::drawField()
 	glEnd();
 	// Draw the walls
 	// Wall 1
+	/*
 	glColor3f(0.0f, 0.5f, 0.5f);
 	glBegin(GL_QUADS);
 	glVertex3f(-width, -height, -depth);
@@ -111,15 +112,17 @@ void cgvScene3D::drawField()
 	glVertex3f(width, height, -depth);
 	glVertex3f(-width, height, -depth);
 	glEnd();
-	/*
+	*/
+	
 	// Wall 2
+	glColor3f(0.0f, 1.5f, 1.0f);
 	glBegin(GL_QUADS);
 	glVertex3f(width, -height, -depth);
 	glVertex3f(width, -height, depth);
 	glVertex3f(width, height, depth);
 	glVertex3f(width, height, -depth);
 	glEnd();
-	*/
+	
 
 	// Wall 3
 	/*
@@ -201,7 +204,7 @@ void cgvScene3D::render(RenderMode mode) {
 
 	// lights
 
-	GLfloat light0[4] = { 5.0,5.0,5.0,1 }; // point light source  
+	GLfloat light0[4] = { 0,0,0,1 }; // point light source  
 	glLightfv(GL_LIGHT0, GL_POSITION, light0); // this light is placed here and it remains still 
 
 	glEnable(GL_LIGHT0);
@@ -216,8 +219,13 @@ void cgvScene3D::render(RenderMode mode) {
 	drawball();
 
 	// Disable lighting before drawing the field
-	drawField();
+	glDisable(GL_LIGHTING);
+
+	drawField();  // Draw the field without lighting
+
 	// Enable lighting again after drawing the field
+	glEnable(GL_LIGHTING);
+
 
 
 	glPopMatrix(); // restore the modelview matrix 
