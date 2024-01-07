@@ -52,6 +52,7 @@ void cgvCamera::setCameraParameters(cgvPoint3D _PV, cgvPoint3D _rp, cgvPoint3D _
  * @param _up up vector
  * @return The attributes corresponding to the camera parameters 
  */
+
 void cgvCamera::getCameraParameters(cgvPoint3D& _PV, cgvPoint3D& _rp, cgvPoint3D& _up) {
 	_PV = PV;
 	_rp = rp;
